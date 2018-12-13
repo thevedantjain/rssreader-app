@@ -44,8 +44,8 @@ class FeedCheck: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "checkbox", for: indexPath)
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
@@ -62,7 +62,8 @@ class FeedCheck: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 230.0
+        //adjust height
+        return 230.0
     }
     
 }
