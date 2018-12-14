@@ -8,10 +8,20 @@
 
 import Foundation
 import UIKit
+import CoreData
+
+struct Source {
+    
+    var title:String
+    var description: String
+    var link: String
+    var isSelected: Bool
+    
+}
 
 class FeedCheck: UITableViewController {
     
-    
+    let sourceArray: [Source] = [Source.init(title: "Apple Dev News", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", link: "https://developer.apple.com/news", isSelected: true), Source.init(title: "The Verge", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",  link: "https://theverge.com", isSelected: true), Source.init(title: "Times of India", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", link: "https://timesofindia.com", isSelected: true)]
     
     override func viewDidLoad() {
         
@@ -20,14 +30,18 @@ class FeedCheck: UITableViewController {
         //hide navigation bar
         //        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        //fetch XML data
+        //core data shit
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Source", in: context)
+        let newSource = NSManagedObject(entity: entity!, insertInto: context)
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
         tableView.allowsSelection = true
         
-        tableView.register(linkCell.self, forCellReuseIdentifier: "checkbox")
+        tableView.register(sourceCell.self, forCellReuseIdentifier: "checkbox")
         
     }
     
@@ -39,26 +53,40 @@ class FeedCheck: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 1
+        return sourceArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "checkbox", for: indexPath)
+        let cell: sourceCell = tableView.dequeueReusableCell(withIdentifier: "checkbox", for: indexPath) as! sourceCell
+        cell.headLabel.text = sourceArray[indexPath.item].title
+        cell.subtextLabel.text = sourceArray[indexPath.item].description
+        cell.sourceLabel.text = sourceArray[indexPath.item].link
+//        let switchView = UISwitch(frame: .zero)
+        cell.switchView.setOn(false, animated: true)
+        cell.switchView.tag = indexPath.row // for detect which row switch Changed
+        cell.switchView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+        cell.accessoryView = cell.switchView
+        
+        
         return cell
+    }
+    
+    @objc func switchChanged(_ sender : UISwitch!){
+        
+        let currentCell: sourceCell = sender.superview as! sourceCell
+        
+        if (currentCell.isSelected == true) {
+            currentCell.isSelected = false
+            return
+        }
+        currentCell.isSelected = true
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        //        tableView.deselectRow(at: indexPath, animated: true)
-        //        let cell = tableView.cellForRow(at: indexPath) as! linkCell
-        //
-        //        tableView.beginUpdates()
-        //        cell.subtextLabel.numberOfLines = (cell.subtextLabel.numberOfLines == 0) ? 3 : 0
-        //
-        //        cellStates?[indexPath.row] = (cell.subtextLabel.numberOfLines == 0) ? .expanded : .collapsed
-        //
-        //        tableView.endUpdates()
+        //toggle isSelected
+//        let currentCell: sourceCell = tableView.cellForRow(at: indexPath) as! sourceCell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -15,7 +15,7 @@ class MainController: UITableViewController {
     private var cellStates: [CellState]?
     
     private let linkCellID = "linkCell"
-
+    
     private func fetchData() {
         let feedParser = FeedParser()
         feedParser.parseFeed(url: "https://developer.apple.com/news/rss/news.rss") { (rssItems) in
@@ -24,7 +24,7 @@ class MainController: UITableViewController {
             
             OperationQueue.main.addOperation {
                 //reload view
-                print("dev apple news")
+//                print("dev apple news")
                 self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
             }
             
@@ -37,7 +37,7 @@ class MainController: UITableViewController {
 
             OperationQueue.main.addOperation {
                 //reload view
-                print("the verge")
+//                print("the verge")
 //                self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
             }
 
@@ -52,7 +52,7 @@ class MainController: UITableViewController {
 
             OperationQueue.main.addOperation {
                 //reload view
-                print("toi")
+//                print("toi")
                 self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
             }
 

@@ -102,9 +102,9 @@ class FeedParser: NSObject, XMLParserDelegate
                 
                 // toi and apple format
                 dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
-                print("date: ", string)
+//                print("date: ", string)
                 let date = dateFormatter.date(from: string) ?? Date(timeIntervalSinceReferenceDate: 0.0)
-                print("pubDate: ", dateFormatter.string(from: date))
+//                print("pubDate: ", dateFormatter.string(from: date))
                 currentPubDate = date
                 break
             case "published" :
@@ -113,7 +113,7 @@ class FeedParser: NSObject, XMLParserDelegate
                 // verge format
                 dateFormatter.dateFormat = "yyyy-MM-ddThh:mm:ss-ZZZZ"
                 let date = dateFormatter.date(from: string) ?? Date(timeIntervalSinceReferenceDate: -12389.0)
-                print("published: ", dateFormatter.string(from: date))
+//                print("published: ", dateFormatter.string(from: date))
                 currentPubDate = date
                 break
             case "link" : currentLink += string

@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="n6Q-6M-eVY">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="n6Q-6M-eVY" customClass="linkCell" customModule="rssreader" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n6Q-6M-eVY" id="j66-V8-HgO">
@@ -72,16 +72,16 @@
             </objects>
             <point key="canvasLocation" x="-2223" y="-1427"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Sources-->
         <scene sceneID="4I8-lg-JwW">
             <objects>
-                <tableViewController id="Lnb-jg-6K1" sceneMemberID="viewController">
+                <tableViewController id="Lnb-jg-6K1" customClass="FeedCheck" customModule="rssreader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2aY-sj-nv7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ekg-r6-h97">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ekg-r6-h97" customClass="sourceCell" customModule="rssreader" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ekg-r6-h97" id="uct-gg-PAP">
@@ -95,7 +95,7 @@
                             <outlet property="delegate" destination="Lnb-jg-6K1" id="Rxo-mq-AVg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="uA0-51-CSw"/>
+                    <navigationItem key="navigationItem" title="Sources" id="uA0-51-CSw"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEG-BR-XMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

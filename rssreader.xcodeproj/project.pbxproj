@@ -17,6 +17,8 @@
 		6F28D67021B85CDB0053F5DE /* xmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F28D66F21B85CDB0053F5DE /* xmlParser.swift */; };
 		6FA5DACE21C2DA6900371292 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FA5DACD21C2DA6900371292 /* Main.storyboard */; };
 		6FA5DB0D21C2DFC500371292 /* FeedCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5DB0C21C2DFC500371292 /* FeedCheck.swift */; };
+		6FA5DB0F21C370CD00371292 /* sourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5DB0E21C370CD00371292 /* sourceCell.swift */; };
+		6FA5DB1121C37A6D00371292 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FA5DB1021C37A6D00371292 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		6F28D66F21B85CDB0053F5DE /* xmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xmlParser.swift; sourceTree = "<group>"; };
 		6FA5DACD21C2DA6900371292 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6FA5DB0C21C2DFC500371292 /* FeedCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCheck.swift; sourceTree = "<group>"; };
+		6FA5DB0E21C370CD00371292 /* sourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sourceCell.swift; sourceTree = "<group>"; };
+		6FA5DB1021C37A6D00371292 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +111,10 @@
 				6F020A8821B8496C00906E5D /* MainController.swift */,
 				6FA5DB0C21C2DFC500371292 /* FeedCheck.swift */,
 				6F020A8A21B84DE900906E5D /* linkCell.swift */,
+				6FA5DB0E21C370CD00371292 /* sourceCell.swift */,
 				6F28D66F21B85CDB0053F5DE /* xmlParser.swift */,
 				6FA5DACD21C2DA6900371292 /* Main.storyboard */,
+				6FA5DB1021C37A6D00371292 /* LaunchScreen.storyboard */,
 				6F020A6121B848FC00906E5D /* Assets.xcassets */,
 				6F020A6621B848FC00906E5D /* Info.plist */,
 				6F020A5E21B848FB00906E5D /* rssreader.xcdatamodeld */,
@@ -238,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FA5DB1121C37A6D00371292 /* LaunchScreen.storyboard in Resources */,
 				6F020A6221B848FC00906E5D /* Assets.xcassets in Resources */,
 				6FA5DACE21C2DA6900371292 /* Main.storyboard in Resources */,
 			);
@@ -264,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FA5DB0F21C370CD00371292 /* sourceCell.swift in Sources */,
 				6F020A5821B848FB00906E5D /* AppDelegate.swift in Sources */,
 				6F020A8921B8496C00906E5D /* MainController.swift in Sources */,
 				6FA5DB0D21C2DFC500371292 /* FeedCheck.swift in Sources */,
