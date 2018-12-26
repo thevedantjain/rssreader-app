@@ -25,7 +25,7 @@ class MainController: UITableViewController {
             OperationQueue.main.addOperation {
                 //reload view
 //                print("dev apple news")
-                self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
+//                self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
             }
             
         }
@@ -99,6 +99,7 @@ class MainController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        
         let cell: linkCell = tableView.dequeueReusableCell(withIdentifier: linkCellID, for: indexPath) as! linkCell
         cell.headLabel.text = rssItems?[indexPath.item].title ?? "title"
 //        cell.sourceLabel.text = rssItems?[indexPath.item].source ?? "source"
@@ -118,6 +119,7 @@ class MainController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        
 //        tableView.deselectRow(at: indexPath, animated: true)
 //        let cell = tableView.cellForRow(at: indexPath) as! linkCell
 //
@@ -128,21 +130,26 @@ class MainController: UITableViewController {
 //
 //        tableView.endUpdates()
         print("tapped")
-        let urlString:String = rssItems?[indexPath.item].link as! String
+        let urlString:String = rssItems?[indexPath.item].link ?? "urlString::didSelectRowAt::MainController.swift"
         let url = URL(string: urlString)
         let config = SFSafariViewController.Configuration()
         config.entersReaderIfAvailable = true
         let safariVC = SFSafariViewController(url: url ?? URL(string: "https://www.apple.com")!, configuration: config)
         present(safariVC, animated: true, completion: nil)
+        
     }
     
     //when user dismissed safari view controller
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        
         dismiss(animated: true)
+    
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return 230.0
+    
     }
     
 }

@@ -62,7 +62,7 @@ class linkCell: UITableViewCell {
         addSubview(subtextLabel)
         addSubview(dateLabel)
         
-        headLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -200).isActive = true
+        headLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -190).isActive = true
         headLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         headLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
         headLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10).isActive = true
@@ -75,7 +75,7 @@ class linkCell: UITableViewCell {
         subtextLabel.topAnchor.constraint(equalTo: headLabel.topAnchor, constant: 220).isActive = true
         subtextLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         subtextLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
-        subtextLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10).isActive = true
+        subtextLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         
         dateLabel.topAnchor.constraint(equalTo: subtextLabel.topAnchor, constant: 150).isActive = true
         dateLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true

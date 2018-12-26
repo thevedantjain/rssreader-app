@@ -10,18 +10,18 @@ import Foundation
 import UIKit
 import CoreData
 
-struct Source {
-    
+struct sourceStruct {
+
     var title:String
     var description: String
     var link: String
     var isSelected: Bool
-    
+
 }
 
 class FeedCheck: UITableViewController {
     
-    let sourceArray: [Source] = [Source.init(title: "Apple Dev News", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", link: "https://developer.apple.com/news", isSelected: true), Source.init(title: "The Verge", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",  link: "https://theverge.com", isSelected: true), Source.init(title: "Times of India", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", link: "https://timesofindia.com", isSelected: true)]
+    let sourceArray: [sourceStruct] = [sourceStruct.init(title: "Apple Dev News", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", link: "https://developer.apple.com/news", isSelected: true), sourceStruct.init(title: "The Verge", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",  link: "https://theverge.com", isSelected: true), sourceStruct.init(title: "Times of India", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur", link: "https://timesofindia.com", isSelected: true)]
     
     override func viewDidLoad() {
         
@@ -47,17 +47,22 @@ class FeedCheck: UITableViewController {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        
         // Return the number of sections
         return 1
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        
         return sourceArray.count
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        
         let cell: sourceCell = tableView.dequeueReusableCell(withIdentifier: "checkbox", for: indexPath) as! sourceCell
         cell.headLabel.text = sourceArray[indexPath.item].title
         cell.subtextLabel.text = sourceArray[indexPath.item].description
@@ -68,30 +73,42 @@ class FeedCheck: UITableViewController {
         cell.switchView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
         cell.accessoryView = cell.switchView
         
-        
         return cell
+        
     }
     
     @objc func switchChanged(_ sender : UISwitch!){
-        
+
         let currentCell: sourceCell = sender.superview as! sourceCell
+        currentCell.backgroundColor = .white
         
-        if (currentCell.isSelected == true) {
-            currentCell.isSelected = false
+        if (sender.isOn == true) {
+            currentCell.isSelected = true
             return
         }
-        currentCell.isSelected = true
+        
+        currentCell.isSelected = false
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         //toggle isSelected
 //        let currentCell: sourceCell = tableView.cellForRow(at: indexPath) as! sourceCell
+        
+        //table cells may grey out by default, deselect to prevent
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        //code
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         //adjust height
-        return 230.0
+        return 170.0
+        
     }
     
 }

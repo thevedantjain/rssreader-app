@@ -48,27 +48,27 @@ class sourceCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         // code common to all your cells goes here
+        addSubview(switchView)
         addSubview(headLabel)
         addSubview(sourceLabel)
         addSubview(subtextLabel)
-        addSubview(switchView)
         
-        headLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -200).isActive = true
+        headLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -140).isActive = true
         headLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         headLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
-        headLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 100).isActive = true
+        headLabel.rightAnchor.constraint(equalTo: switchView.leftAnchor, constant: -10).isActive = true
         
-        sourceLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -130).isActive = true
+        sourceLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -100).isActive = true
         sourceLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         sourceLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
-        sourceLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 100).isActive = true
+        sourceLabel.rightAnchor.constraint(equalTo: switchView.leftAnchor, constant: -10).isActive = true
         
-        switchView.topAnchor.constraint(equalTo: headLabel.topAnchor, constant: -200).isActive = true
+        switchView.topAnchor.constraint(equalTo: self.topAnchor, constant: -200).isActive = true
         
-        subtextLabel.topAnchor.constraint(equalTo: headLabel.topAnchor, constant: 220).isActive = true
+        subtextLabel.topAnchor.constraint(equalTo: headLabel.topAnchor, constant: 180).isActive = true
         subtextLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         subtextLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
-        subtextLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 100).isActive = true
+        subtextLabel.rightAnchor.constraint(equalTo: switchView.leftAnchor, constant: -10).isActive = true
         
     }
     

@@ -89,13 +89,31 @@ class FeedParser: NSObject, XMLParserDelegate
     
     func parser(_ parser: XMLParser, foundCharacters string: String)
     {
+        var i = 0
+        
         switch currentElement {
-            //            var startIndex = string.endIndex(of: "<p")
-            //            var endIndex = string.index(of: "</p>")
-            //            currentDescription += string[startIndex!..<endIndex!]
             case "title": currentTitle += string
-            case "description" : currentDescription += string
-            case "content" :currentDescription += string
+            case "description", "content" :
+                if (string.trimmingCharacters(in: CharacterSet.whitespaces).count < 5) {
+                    break
+                }
+                if (currentElement == "content" && i == 0) {
+                    print("string", string)
+                    let startIndex: String.Index = string.endIndex(of: "<p") ?? string.startIndex
+                    let endIndex: String.Index = string.index(of: "</p>") ?? string.endIndex
+                    if (string.count > 15) {
+                        let first = string.index(startIndex, offsetBy: 13)
+                        currentDescription += string[first..<endIndex]
+                    }
+                    else {
+                        currentDescription += string[startIndex..<endIndex]
+                    }
+                }
+                else {
+                    currentDescription += string
+                }
+                i = i+1
+            break
             case "pubDate" :
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -137,6 +155,55 @@ class FeedParser: NSObject, XMLParserDelegate
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error)
     {
         print(parseError.localizedDescription)
+    }
+    
+}
+
+// finding substring
+
+extension StringProtocol where Index == String.Index {
+    func index(of string: Self, options: String.CompareOptions = []) -> Index? {
+        return range(of: string, options: options)?.lowerBound
+    }
+    func endIndex(of string: Self, options: String.CompareOptions = []) -> Index? {
+        return range(of: string, options: options)?.upperBound
+    }
+    func indexes(of string: Self, options: String.CompareOptions = []) -> [Index] {
+        var result: [Index] = []
+        var start = startIndex
+        while start < endIndex,
+            let range = self[start..<endIndex].range(of: string, options: options) {
+                result.append(range.lowerBound)
+                start = range.lowerBound < range.upperBound ? range.upperBound :
+                    index(range.lowerBound, offsetBy: 1, limitedBy: endIndex) ?? endIndex
+        }
+        return result
+    }
+    func ranges(of string: Self, options: String.CompareOptions = []) -> [Range<Index>] {
+        var result: [Range<Index>] = []
+        var start = startIndex
+        while start < endIndex,
+            let range = self[start..<endIndex].range(of: string, options: options) {
+                result.append(range)
+                start = range.lowerBound < range.upperBound ? range.upperBound :
+                    index(range.lowerBound, offsetBy: 1, limitedBy: endIndex) ?? endIndex
+        }
+        return result
+    }
+}
+
+// for int to string.index conversion
+
+extension String {
+    subscript (index: Int) -> Character {
+        let charIndex = self.index(self.startIndex, offsetBy: index)
+        return self[charIndex]
+    }
+    
+    subscript (range: Range<Int>) -> Substring {
+        let startIndex = self.index(self.startIndex, offsetBy: range.startIndex)
+        let stopIndex = self.index(self.startIndex, offsetBy: range.startIndex + range.count)
+        return self[startIndex..<stopIndex]
     }
     
 }
